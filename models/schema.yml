@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: ods_s3_l1_v_clientes
+    description: "Vista con los datos de clientes"
+    columns:
+      - name: user_id
+        description: "ID del usuario"
+        tests:
+          - not_null
+
+      - name: age
+        description: "Edad del cliente"
+        tests:
+          - validar_edad
+  
+  - name: ods_s3_l1_v_compras
+    description: "Vista de las compras ejecutadas"
+    columns:
+      - name: transaction_id
+        description: "ID de la orden"
+        tests:
+          - unique
+          - not_null
+
+      - name: lk_clienteid
+        description: "ID del usuario"
+        tests:
+          - not_null
+
+
+      - name: delivery_days
+        description: "Número de días naturales entre el pago y la recepción del pedido"
+
+  - name: ods_s3_l1_v_metodospago
+    description: "Vista maestra de métodos de pago con ID único"
+    columns:
+      - name: id_metodopago
+        description: "Identificador único del método de pago"
+        tests:
+          - unique
+          - not_null
+          
+  - name: ods_s3_l1_v_categproducto
+    description: "Vista maestra de categoria de productos con ID único"
+    columns:
+      - name: id_categproducto
+        description: "Identificador único de la categoria del producto"
+        tests:
+          - unique
+          - not_null
+
+  - name: ods_cli_l2_v_clientes
+    description: "Vista con los datos de clientes"
+    columns:
+      - name: user_id
+        description: "ID del usuario"
+        tests:
+          - unique
+          - not_null
+  - name: ods_vnt_l2_v_compras
+    description: "Vista de las compras ejecutadas"
+    columns:
+      - name: transaction_id
+        description: "ID de la orden"
+        tests:
+          - unique
+          - not_null  
